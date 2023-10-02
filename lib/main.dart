@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sale_computer/pages/home/home_page.dart';
 import 'package:sale_computer/pages/login/components/login_auth_provider.dart';
 import 'package:sale_computer/pages/login/login_page.dart';
 import 'package:sale_computer/pages/signup/components/signup_auth_provider.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const LoginPage(),
+        home: const HomePage(),
       ),
     );
   }
