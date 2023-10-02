@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "90411620084",
+    "project_id": "salecomputer-91bfe",
+    "storage_bucket": "salecomputer-91bfe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90411620084:android:36112a1cd7e25199c430a1",
+        "android_client_info": {
+          "package_name": "com.example.sale_computer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKZnehO3GC1wrR8iUM05IeMP8cwqMWJjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
