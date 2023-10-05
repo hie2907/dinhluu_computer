@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sale_computer/appColors/appColors.dart';
+import 'package:sale_computer/pages/login/login_page.dart';
+import 'package:sale_computer/pages/router/router_page.dart';
+import 'package:sale_computer/pages/signup/signup_page.dart';
 import 'package:sale_computer/widget/my_button.dart';
 
 class EndPart extends StatelessWidget {
@@ -9,7 +13,10 @@ class EndPart extends StatelessWidget {
     return Column(
       children: [
         MyButton(
-          onPressed: () {},
+          onPressed: () {
+            RouterPage.goTonext(
+                context: context, navigateTo: const LoginPage());
+          },
           text: "Login",
         ),
         const SizedBox(
@@ -17,12 +24,13 @@ class EndPart extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            print("click");
+            RouterPage.goTonext(
+                context: context, navigateTo: const SignUpPage());
           },
           child: const Text(
             "Sign Up",
             style: TextStyle(
-              color: Color(0xff797b7a),
+              color: AppColors.KgreyColor,
             ),
           ),
         )

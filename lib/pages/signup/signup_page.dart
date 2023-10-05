@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sale_computer/pages/login/login_page.dart';
+import 'package:sale_computer/pages/router/router_page.dart';
 import 'package:sale_computer/pages/signup/components/signup_auth_provider.dart';
 import 'package:sale_computer/widget/my_button.dart';
 
@@ -91,10 +92,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       const Text("Already have account?\t\t"),
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const LoginPage(),
-                            ),
+                          RouterPage.goTonext(
+                            context: context,
+                            navigateTo: const LoginPage(),
                           );
                         },
                         child: const Text(

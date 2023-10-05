@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sale_computer/pages/login/components/login_auth_provider.dart';
+import 'package:sale_computer/pages/router/router_page.dart';
 import 'package:sale_computer/pages/signup/signup_page.dart';
 import 'package:sale_computer/widget/my_button.dart';
 
@@ -39,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
                         "images/logo.jpg",
-                        scale: 40,
+                        scale: 5,
                       ),
                     ),
                     const SizedBox(
@@ -108,11 +109,8 @@ class _LoginPageState extends State<LoginPage> {
                     const Text("Don't have an account?\t\t"),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const SignUpPage(),
-                          ),
-                        );
+                        RouterPage.goTonext(
+                            context: context, navigateTo: const SignUpPage());
                       },
                       child: const Text(
                         "Sign Up",

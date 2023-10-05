@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sale_computer/pages/login/login_page.dart';
+import 'package:sale_computer/pages/router/router_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -13,10 +14,9 @@ class HomePage extends StatelessWidget {
           IconButton(
             onPressed: () {
               FirebaseAuth.instance.signOut().then(
-                    (value) => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const LoginPage(),
-                      ),
+                    (value) => RouterPage.goTonext(
+                      context: context,
+                      navigateTo: const LoginPage(),
                     ),
                   );
             },

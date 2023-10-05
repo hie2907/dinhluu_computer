@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sale_computer/pages/home/home_page.dart';
+import 'package:sale_computer/pages/router/router_page.dart';
 
 class LoginAuthProvider with ChangeNotifier {
   bool loading = false;
@@ -41,10 +42,9 @@ class LoginAuthProvider with ChangeNotifier {
           (value) async {
             loading = false;
             notifyListeners();
-            await Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const HomePage(),
-              ),
+            RouterPage.goTonext(
+              context: context,
+              navigateTo: const HomePage(),
             );
             return null;
           },

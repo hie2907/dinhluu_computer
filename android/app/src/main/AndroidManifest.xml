@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="sale_computer"
+        android:label="Đình Lưu Computer"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

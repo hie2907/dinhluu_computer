@@ -11,6 +11,7 @@ class WelcomePage extends StatelessWidget {
     return const Scaffold(
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             //top part
             TopPart(),

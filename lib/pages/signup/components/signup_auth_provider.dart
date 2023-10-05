@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:sale_computer/pages/login/login_page.dart';
+import 'package:sale_computer/pages/router/router_page.dart';
 
 class SignUpAuthProvider with ChangeNotifier {
   static Pattern pattern =
@@ -75,10 +76,9 @@ class SignUpAuthProvider with ChangeNotifier {
         ).then((value) {
           loading = false;
           notifyListeners();
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const LoginPage(),
-            ),
+          RouterPage.goTonext(
+            context: context,
+            navigateTo: const LoginPage(),
           );
         });
       } on FirebaseAuthException catch (e) {
