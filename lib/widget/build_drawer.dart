@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sale_computer/pages/home/home_page.dart';
 import 'package:sale_computer/pages/login/login_page.dart';
 
 class BuildDrawer extends StatelessWidget {
@@ -11,14 +12,14 @@ class BuildDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const UserAccountsDrawerHeader(
-            decoration: BoxDecoration(
+          UserAccountsDrawerHeader(
+            decoration: const BoxDecoration(
               color: Colors.purple,
             ),
-            accountName: Text("Hie297"),
-            accountEmail: Text("trandinhhieu20152@gmail.com"),
+            accountName: Text(userModel.fullName),
+            accountEmail: Text(userModel.emailAdress),
             currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage("images/logo.jpg"),
+              backgroundImage: AssetImage("images/none_profile.jpg"),
             ),
           ),
           ListTile(

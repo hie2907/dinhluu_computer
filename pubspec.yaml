@@ -35,3 +35,4 @@ flutter:
   uses-material-design: true
   assets:
     - images/logo.jpg
+    - images/none_profile.jpg
