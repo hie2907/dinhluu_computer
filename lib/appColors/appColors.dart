@@ -6,4 +6,5 @@ class AppColors {
   static const Kgradient1 = Color(0xff027f47);
   static const Kgradient2 = Color(0xff01a95c);
   static const KwiteColor = Colors.white;
+  static const Kgrey = Color(0xFFF5F6F9);
 }

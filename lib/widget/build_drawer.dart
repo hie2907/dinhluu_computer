@@ -2,6 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sale_computer/pages/home/home_page.dart';
 import 'package:sale_computer/pages/login/login_page.dart';
+import 'package:sale_computer/pages/profile/components/profile_body.dart';
+import 'package:sale_computer/pages/profile/profile_page.dart';
+import 'package:sale_computer/pages/router/router_page.dart';
 
 class BuildDrawer extends StatelessWidget {
   const BuildDrawer({super.key});
@@ -18,13 +21,16 @@ class BuildDrawer extends StatelessWidget {
             ),
             accountName: Text(userModel.fullName),
             accountEmail: Text(userModel.emailAdress),
-            currentAccountPicture: CircleAvatar(
+            currentAccountPicture: const CircleAvatar(
               backgroundImage: AssetImage("images/none_profile.jpg"),
             ),
           ),
           ListTile(
             leading: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                RouterPage.goTonext(
+                    context: context, navigateTo: const ProfileBody());
+              },
               icon: const Icon(Icons.person),
             ),
             title: const Text("Profile"),
@@ -34,7 +40,7 @@ class BuildDrawer extends StatelessWidget {
               onPressed: () {},
               icon: const Icon(Icons.shopping_cart_rounded),
             ),
-            title: Text("Cart"),
+            title: const Text("Cart"),
           ),
           ListTile(
             leading: IconButton(
