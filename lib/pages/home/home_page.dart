@@ -3,7 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sale_computer/appColors/appColors.dart';
 import 'package:sale_computer/model/user_model.dart';
+import 'package:sale_computer/pages/router/router_page.dart';
 import 'package:sale_computer/widget/build_drawer.dart';
+import 'package:sale_computer/widget/grid_view_widget.dart';
+import 'package:sale_computer/widget/products.dart';
 
 late UserModel userModel;
 
@@ -68,20 +71,40 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          const SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                Categories(
-                  image: "images/logo.jpg",
-                  categoryName: "Food",
-                ),
-                Categories(
-                  image: "images/logo.jpg",
-                  categoryName: "Cake",
-                ),
-              ],
+          Container(
+            height: 100,
+            child: StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection("categories")
+                  .snapshots(),
+              builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshort) {
+                if (!streamSnapshort.hasData) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: streamSnapshort.data!.docs.length,
+                  itemBuilder: (ctx, index) {
+                    return Categories(
+                      onTap: () {
+                        RouterPage.goTonext(
+                          context: context,
+                          navigateTo: GridViewWidget(
+                            collection: streamSnapshort.data!.docs[index]
+                                ["categoryName"],
+                            id: streamSnapshort.data!.docs[index].id,
+                          ),
+                        );
+                      },
+                      image: streamSnapshort.data!.docs[index]["categoryImage"],
+                      categoryName: streamSnapshort.data!.docs[index]
+                          ["categoryName"],
+                    );
+                  },
+                );
+              },
             ),
           ),
           const ListTile(
@@ -130,76 +153,36 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class Products extends StatelessWidget {
-  const Products({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          margin: const EdgeInsets.all(12),
-          height: 200,
-          width: 170,
-          decoration: BoxDecoration(
-            color: Colors.red,
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.only(left: 22),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Prices",
-                style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Text(
-                "Name Products",
-                style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class Categories extends StatelessWidget {
   final String image;
   final String categoryName;
+  final Function()? onTap;
   const Categories({
     super.key,
+    required this.onTap,
     required this.image,
     required this.categoryName,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(12),
-      height: 100,
-      width: 170,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: AssetImage(image),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.all(12),
+        height: 100,
+        width: 170,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: NetworkImage(image),
+          ),
+          color: Colors.blue,
+          borderRadius: BorderRadius.circular(10),
         ),
-        color: Colors.blue,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Center(
-        child: Text(categoryName),
+        child: Center(
+          child: Text(categoryName),
+        ),
       ),
     );
   }
